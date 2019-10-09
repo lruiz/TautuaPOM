@@ -21,8 +21,8 @@
     <version>1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Tautua POM</name>
-    <description>Tautua organizational pom</description>
+    <name>Tautua Pom</name>
+    <description>Tautua corporate pom</description>
     <url>http://www.tautua.org</url>
     <inceptionYear>2019</inceptionYear>
 
@@ -63,4 +63,42 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.5.0</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                                <requireEncoding>
+                                    <includes>src/main/java/**,src/main/resources/**</includes>
+                                </requireEncoding>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>extra-enforcer-rules</artifactId>
+                        <version>1.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
