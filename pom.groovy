@@ -94,10 +94,9 @@ project {
         plugin 'org.apache.maven.plugins:maven-gpg-plugin:1.6'
         plugin 'org.codehaus.mojo:license-maven-plugin:2.0.0'
         plugin 'org.codehaus.mojo:versions-maven-plugin:2.7'
-
-        plugin 'org.apache.felix:maven-bundle-plugin:4.2.1'
       }
     }
+
     plugins {
       plugin {
         artifactId 'maven-compiler-plugin'
@@ -111,9 +110,7 @@ project {
         executions {
           execution {
             id 'enforce-rules'
-            goals {
-              goal 'enforce'
-            }
+            goals 'enforce'
             configuration {
               rules {
                 requireMavenVersion {
