@@ -43,7 +43,6 @@ project {
     connection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
     developerConnection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
     url 'https://github.com/lruiz/TautuaPOM.git'
-    tag 'apache-23'
   }
 
   distributionManagement {
@@ -86,7 +85,7 @@ project {
         plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.0.0'
         plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.1.1'
         plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.1.1'
-        plugin 'org.apache.maven.plugins:maven-release-plugin:2.5.3'
+        plugin 'org.apache.maven.plugins:maven-release-plugin:3.0.0-M1'
         plugin 'org.apache.maven.plugins:maven-source-plugin:3.1.0'
         plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.1.1'
         plugin 'org.apache.maven.plugins:maven-gpg-plugin:1.6'
