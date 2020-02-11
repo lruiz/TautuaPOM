@@ -140,9 +140,7 @@ project {
         artifactId 'license-maven-plugin'
         reportSets {
           reportSet {
-            reports {
-              report 'third-party-report'
-            }
+            reports 'third-party-report'
           }
         }
         configuration {
@@ -154,11 +152,9 @@ project {
         artifactId 'versions-maven-plugin'
         reportSets {
           reportSet {
-            reports {
-              report 'dependency-updates-report'
-              report 'plugin-updates-report'
-              report 'property-updates-report'
-            }
+            reports 'dependency-updates-report',
+                    'plugin-updates-report',
+                    'property-updates-report'
           }
         }
       }
@@ -176,9 +172,7 @@ project {
               execution {
                 id 'attach-sources'
                 phase 'verify'
-                goals {
-                  goal 'jar'
-                }
+                goals 'jar'
               }
             }
           }
@@ -188,9 +182,7 @@ project {
               execution {
                 id 'attach-javadocs'
                 phase 'verify'
-                goals {
-                  goal 'jar'
-                }
+                goals 'jar'
               }
             }
           }
@@ -200,9 +192,7 @@ project {
               execution {
                 id 'sign-artifacts'
                 phase 'verify'
-                goals {
-                  goal 'sign'
-                }
+                goals 'sign'
               }
             }
           }
