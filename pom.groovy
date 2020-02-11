@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 TAUTUA
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 project {
   modelVersion '4.0.0'
   groupId 'org.tautua'
@@ -51,7 +67,7 @@ project {
     'java.source.version' '${java.version}'
     encoding 'UTF-8'
     'project.build.sourceEncoding' '${encoding}'
-    'maven.version' '3.5.0'
+    'maven.version' '3.6.3'
     'java.target.version' '${java.version}'
   }
 
