@@ -39,13 +39,11 @@ project {
     }
   }
 
-  developers {
-    developer {
-      id 'lruiz'
-      name 'Larry Ruiz'
-      email 'lruiz@tautua.org'
-      timezone '-6'
-    }
+  scm {
+    connection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
+    developerConnection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
+    url 'https://github.com/lruiz/TautuaPOM.git'
+    tag 'apache-23'
   }
 
   distributionManagement {
@@ -74,7 +72,7 @@ project {
   build {
     pluginManagement {
       plugins {
-        plugin 'org.apache.maven.plugins:maven-antrun-plugin:1.4'
+        plugin 'org.apache.maven.plugins:maven-antrun-plugin:1.8'
         plugin 'org.apache.maven.plugins:maven-clean-plugin:3.1.0'
         plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.8.1'
         plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1'
@@ -98,15 +96,13 @@ project {
     }
 
     plugins {
-      plugin {
-        artifactId 'maven-compiler-plugin'
+      plugin ('org.apache.maven.plugins:maven-compiler-plugin') {
         configuration {
           source '${java.source.version}'
           target '${java.target.version}'
         }
       }
-      plugin {
-        artifactId 'maven-enforcer-plugin'
+      plugin ('org.apache.maven.plugins:maven-enforcer-plugin') {
         executions {
           execution {
             id 'enforce-rules'
@@ -163,8 +159,7 @@ project {
       id 'live'
       build {
         plugins {
-          plugin {
-            artifactId 'maven-source-plugin'
+          plugin ('org.apache.maven.plugins:maven-source-plugin') {
             executions {
               execution {
                 id 'attach-sources'
@@ -173,8 +168,7 @@ project {
               }
             }
           }
-          plugin {
-            artifactId 'maven-javadoc-plugin'
+          plugin ('org.apache.maven.plugins:maven-javadoc-plugin') {
             executions {
               execution {
                 id 'attach-javadocs'
@@ -183,8 +177,7 @@ project {
               }
             }
           }
-          plugin {
-            artifactId 'maven-gpg-plugin'
+          plugin ('org.apache.maven.plugins:maven-gpg-plugin') {
             executions {
               execution {
                 id 'sign-artifacts'
