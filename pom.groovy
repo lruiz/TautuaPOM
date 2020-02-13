@@ -59,13 +59,13 @@ project {
   }
 
   properties {
-    'project.reporting.outputEncoding' '${encoding}'
-    'java.version' '1.8'
-    'java.source.version' '${java.version}'
     encoding 'UTF-8'
     'project.build.sourceEncoding' '${encoding}'
+    'project.reporting.outputEncoding' '${encoding}'
     'maven.version' '3.6.3'
+    'java.source.version' '${java.version}'
     'java.target.version' '${java.version}'
+    'java.version' '1.8'
   }
 
   build {
