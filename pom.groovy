@@ -24,7 +24,7 @@ project {
   name 'Tautua POM'
   description 'Tautua Corporate POM'
   url 'http://www.tautua.org'
-  inceptionYear '2019'
+  inceptionYear '2020'
 
   organization {
     name 'Tautua'
@@ -39,10 +39,21 @@ project {
     }
   }
 
+  developers {
+    developer {
+      id 'lruiz'
+      name 'Larry Ruiz'
+      email 'lruiz@tautua.org'
+      roles {
+        role 'Lead Developer'
+      }
+    }
+  }
+
   scm {
     connection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
     developerConnection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
-    url 'https://github.com/lruiz/TautuaPOM.git'
+    url 'https://github.com/lruiz/TautuaPOM'
   }
 
   distributionManagement {
@@ -84,7 +95,12 @@ project {
         plugin 'org.apache.maven.plugins:maven-jar-plugin:3.1.2'
         plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.1.1'
         plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.0.0'
-        plugin 'org.apache.maven.plugins:maven-release-plugin:3.0.0-M1'
+        plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.0-M1') {
+          configuration {
+            tagNameFormat 'v@{project.version}'
+            releaseProfiles 'live'
+          }
+        }
         plugin 'org.apache.maven.plugins:maven-resources-plugin:3.1.0'
         plugin 'org.apache.maven.plugins:maven-site-plugin:3.8.2'
         plugin 'org.apache.maven.plugins:maven-source-plugin:3.1.0'
