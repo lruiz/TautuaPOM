@@ -58,12 +58,12 @@ project {
 
   distributionManagement {
     repository {
-      id 'Sonatype.staging'
+      id 'sonatype.staging'
       name 'Sonatype Nexus Staging'
       url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
     }
     snapshotRepository {
-      id 'Sonatype.snapshots'
+      id 'sonatype.snapshots'
       name 'Sonatype Nexus Snapshots'
       url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
