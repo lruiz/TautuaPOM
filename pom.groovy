@@ -45,6 +45,7 @@ project {
       name 'Larry Ruiz'
       email 'lruiz@tautua.org'
       roles {
+        role 'Architect'
         role 'Lead Developer'
       }
     }
@@ -95,12 +96,6 @@ project {
         plugin 'org.apache.maven.plugins:maven-jar-plugin:3.1.2'
         plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.1.1'
         plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.0.0'
-        plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.0-M1') {
-          configuration {
-            tagNameFormat 'v@{project.version}'
-            releaseProfiles 'live'
-          }
-        }
         plugin 'org.apache.maven.plugins:maven-resources-plugin:3.1.0'
         plugin 'org.apache.maven.plugins:maven-site-plugin:3.8.2'
         plugin 'org.apache.maven.plugins:maven-source-plugin:3.1.0'
@@ -113,8 +108,7 @@ project {
     plugins {
       plugin ('org.apache.maven.plugins:maven-compiler-plugin') {
         configuration {
-          source '${java.source.version}'
-          target '${java.target.version}'
+          release '${java.version}'
         }
       }
       plugin ('org.apache.maven.plugins:maven-enforcer-plugin') {
