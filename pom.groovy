@@ -75,8 +75,6 @@ project {
     'project.build.sourceEncoding' '${encoding}'
     'project.reporting.outputEncoding' '${encoding}'
     'maven.version' '3.6.3'
-    'java.source.version' '${java.version}'
-    'java.target.version' '${java.version}'
     'java.version' '1.8'
   }
 
