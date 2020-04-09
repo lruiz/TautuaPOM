@@ -76,6 +76,8 @@ project {
     'project.reporting.outputEncoding' '${encoding}'
     'maven.version' '3.6.3'
     'java.version' '1.8'
+    'maven.compiler.source' '${java.version}'
+    'maven.compiler.target' '${java.version}'
   }
 
   build {
@@ -108,11 +110,6 @@ project {
     }
 
     plugins {
-      plugin ('org.apache.maven.plugins:maven-compiler-plugin') {
-        configuration {
-          release '${java.version}'
-        }
-      }
       plugin ('org.apache.maven.plugins:maven-enforcer-plugin') {
         executions {
           execution {
