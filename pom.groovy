@@ -59,13 +59,13 @@ project {
 
   distributionManagement {
     repository {
-      id 'sonatype.staging'
-      name 'Sonatype Nexus Staging'
+      id 'sonatype.ossrh'
+      name 'Sonatype OSSRH'
       url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
     }
     snapshotRepository {
-      id 'sonatype.snapshots'
-      name 'Sonatype Nexus Snapshots'
+      id 'sonatype.ossrh'
+      name 'Sonatype OSSRH'
       url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
   }
@@ -95,7 +95,11 @@ project {
         plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.1.1'
         plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.0.0'
         plugin 'org.apache.maven.plugins:maven-resources-plugin:3.1.0'
-        plugin 'org.apache.maven.plugins:maven-site-plugin:3.8.2'
+        plugin ('org.apache.maven.plugins:maven-site-plugin:3.9.0') {
+          dependencies {
+            dependency 'net.trajano.wagon:wagon-git:2.0.4'
+          }
+        }
         plugin 'org.apache.maven.plugins:maven-source-plugin:3.1.0'
         plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M3'
         plugin 'org.codehaus.mojo:license-maven-plugin:2.0.0'
