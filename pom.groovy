@@ -52,8 +52,8 @@ project {
     }
 
     scm {
-        connection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
-        developerConnection 'scm:git:https://github.com/lruiz/TautuaPOM.git'
+        connection 'scm:git:git@github.com:lruiz/TautuaPOM.git'
+        developerConnection 'scm:git:git@github.com:lruiz/TautuaPOM.git'
         url 'https://github.com/lruiz/TautuaPOM'
     }
 
@@ -96,10 +96,14 @@ project {
                 plugin 'org.apache.maven.plugins:maven-jar-plugin:3.2.2'
                 plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.4.0'
                 plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.3.0'
+                plugin 'org.apache.maven.plugins:maven-release-plugin:3.0.0-M6'
                 plugin 'org.apache.maven.plugins:maven-resources-plugin:3.2.0'
                 plugin('org.apache.maven.plugins:maven-site-plugin:3.12.0') {
                     dependencies {
-                        dependency 'net.trajano.wagon:wagon-git:2.0.4'
+                        dependency 'org.apache.maven.wagon:wagon-scm:3.5.2'
+                        dependency 'org.apache.maven.scm:maven-scm-api:2.0.0-M1'
+                        dependency 'org.apache.maven.scm:maven-scm-provider-gitexe:2.0.0-M1'
+                        dependency 'org.apache.maven.scm:maven-scm-manager-plexus:2.0.0-M1'
                     }
                 }
                 plugin 'org.apache.maven.plugins:maven-source-plugin:3.2.1'
@@ -114,6 +118,13 @@ project {
             plugin 'org.apache.maven.plugins:maven-compiler-plugin'
             plugin 'org.apache.maven.plugins:maven-jar-plugin'
             plugin 'org.apache.maven.plugins:maven-install-plugin'
+            plugin ('org.apache.maven.plugins:maven-release-plugin') {
+                configuration {
+                    tagNameFormat 'v@{project.version}'
+                    autoVersionSubmodules 'true'
+                    releaseProfiles 'release'
+                }
+            }
         }
     }
 
@@ -147,7 +158,7 @@ project {
 
     profiles {
         profile {
-            id 'full'
+            id 'release'
             build {
                 plugins {
                     plugin('org.apache.maven.plugins:maven-enforcer-plugin') {
@@ -177,18 +188,6 @@ project {
                     }
                     plugin 'org.apache.maven.plugins:maven-failsafe-plugin'
                     plugin 'org.apache.maven.plugins:maven-surefire-plugin'
-                    plugin ('org.jacoco:jacoco-maven-plugin') {
-                        executions {
-                            execution {
-                                id 'prepare-agent'
-                                goals 'prepare-agent'
-                            }
-                            execution {
-                                id 'report'
-                                goals 'report'
-                            }
-                        }
-                    }
                 }
             }
         }
