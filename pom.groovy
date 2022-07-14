@@ -55,7 +55,6 @@ project {
         connection 'scm:git:git@github.com:lruiz/TautuaPOM.git'
         developerConnection 'scm:git:git@github.com:lruiz/TautuaPOM.git'
         url 'https://github.com/lruiz/TautuaPOM'
-        tag 'HEAD'
     }
 
     distributionManagement {
