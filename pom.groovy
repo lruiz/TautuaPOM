@@ -83,22 +83,71 @@ project {
     build {
         pluginManagement {
             plugins {
-                plugin 'org.apache.maven.plugins:maven-antrun-plugin:3.1.0'
                 plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.1.1'
                 plugin 'org.apache.maven.plugins:maven-clean-plugin:3.2.0'
                 plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.10.1'
                 plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.3.0'
                 plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M2'
-                plugin 'org.apache.maven.plugins:maven-enforcer-plugin:3.1.0'
+
+                plugin ('org.apache.maven.plugins:maven-enforcer-plugin:3.1.0') {
+                    executions {
+                        execution {
+                            id 'enforce-rules'
+                            goals 'enforce'
+                            configuration {
+                                rules {
+                                    requireMavenVersion {
+                                        version '${maven.version}'
+                                    }
+                                    requireJavaVersion {
+                                        version '${java.version}'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    dependencies {
+                        dependency 'org.codehaus.mojo:extra-enforcer-rules:1.6.0'
+                    }
+                }
+
                 plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.0.0-M7'
-                plugin 'org.apache.maven.plugins:maven-gpg-plugin:3.0.1'
+
+                plugin ('org.apache.maven.plugins:maven-gpg-plugin:3.0.1') {
+                    executions {
+                        execution {
+                            id 'sign-artifacts'
+                            phase 'verify'
+                            goals 'sign'
+                        }
+                    }
+                }
+
                 plugin 'org.apache.maven.plugins:maven-install-plugin:3.0.0-M1'
                 plugin 'org.apache.maven.plugins:maven-jar-plugin:3.2.2'
-                plugin 'org.apache.maven.plugins:maven-javadoc-plugin:3.4.0'
+
+                plugin ('org.apache.maven.plugins:maven-javadoc-plugin:3.4.0') {
+                    executions {
+                        execution {
+                            id 'attach-javadocs'
+                            goals 'jar'
+                        }
+                    }
+                }
+
                 plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.3.0'
-                plugin 'org.apache.maven.plugins:maven-release-plugin:3.0.0-M6'
+
+                plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.0-M6') {
+                    configuration {
+                        tagNameFormat 'v@{project.version}'
+                        autoVersionSubmodules 'true'
+                        releaseProfiles 'release'
+                    }
+                }
+
                 plugin 'org.apache.maven.plugins:maven-resources-plugin:3.2.0'
-                plugin('org.apache.maven.plugins:maven-site-plugin:3.12.0') {
+
+                plugin ('org.apache.maven.plugins:maven-site-plugin:3.12.0') {
                     dependencies {
                         dependency 'org.apache.maven.wagon:wagon-scm:3.5.2'
                         dependency 'org.apache.maven.scm:maven-scm-api:2.0.0-M1'
@@ -106,11 +155,32 @@ project {
                         dependency 'org.apache.maven.scm:maven-scm-manager-plexus:2.0.0-M1'
                     }
                 }
-                plugin 'org.apache.maven.plugins:maven-source-plugin:3.2.1'
+
+                plugin ('org.apache.maven.plugins:maven-source-plugin:3.2.1') {
+                    executions {
+                        execution {
+                            id 'attach-sources'
+                            goals 'jar-no-fork'
+                        }
+                    }
+                }
+
                 plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.0.0-M7'
                 plugin 'org.codehaus.mojo:license-maven-plugin:2.0.0'
                 plugin 'org.codehaus.mojo:versions-maven-plugin:2.11.0'
-                plugin 'org.jacoco:jacoco-maven-plugin:0.8.8'
+
+                plugin ('org.jacoco:jacoco-maven-plugin:0.8.8') {
+                    executions {
+                        execution {
+                            id 'pre-tests'
+                            goals 'prepare-agent'
+                        }
+                        execution {
+                            id 'post-tests'
+                            goals 'report'
+                        }
+                    }
+                }
             }
         }
 
@@ -118,13 +188,7 @@ project {
             plugin 'org.apache.maven.plugins:maven-compiler-plugin'
             plugin 'org.apache.maven.plugins:maven-jar-plugin'
             plugin 'org.apache.maven.plugins:maven-install-plugin'
-            plugin ('org.apache.maven.plugins:maven-release-plugin') {
-                configuration {
-                    tagNameFormat 'v@{project.version}'
-                    autoVersionSubmodules 'true'
-                    releaseProfiles 'release'
-                }
-            }
+            plugin 'org.apache.maven.plugins:maven-release-plugin'
         }
     }
 
@@ -161,31 +225,7 @@ project {
             id 'release'
             build {
                 plugins {
-                    plugin('org.apache.maven.plugins:maven-enforcer-plugin') {
-                        executions {
-                            execution {
-                                id 'enforce-rules'
-                                goals 'enforce'
-                                configuration {
-                                    rules {
-                                        requireMavenVersion {
-                                            version '${maven.version}'
-                                        }
-                                        requireJavaVersion {
-                                            version '${java.version}'
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        dependencies {
-                            dependency ('org.codehaus.mojo:extra-enforcer-rules:1.3') {
-                                exclusions {
-                                    exclusion 'org.eclipse.aether:aether-util'
-                                }
-                            }
-                        }
-                    }
+                    plugin 'org.apache.maven.plugins:maven-enforcer-plugin'
                     plugin 'org.apache.maven.plugins:maven-failsafe-plugin'
                     plugin 'org.apache.maven.plugins:maven-surefire-plugin'
                 }
@@ -196,33 +236,9 @@ project {
             id 'live'
             build {
                 plugins {
-                    plugin('org.apache.maven.plugins:maven-source-plugin') {
-                        executions {
-                            execution {
-                                id 'attach-sources'
-                                phase 'verify'
-                                goals 'jar'
-                            }
-                        }
-                    }
-                    plugin('org.apache.maven.plugins:maven-javadoc-plugin') {
-                        executions {
-                            execution {
-                                id 'attach-javadocs'
-                                phase 'verify'
-                                goals 'jar'
-                            }
-                        }
-                    }
-                    plugin('org.apache.maven.plugins:maven-gpg-plugin') {
-                        executions {
-                            execution {
-                                id 'sign-artifacts'
-                                phase 'verify'
-                                goals 'sign'
-                            }
-                        }
-                    }
+                    plugin 'org.apache.maven.plugins:maven-source-plugin'
+                    plugin 'org.apache.maven.plugins:maven-javadoc-plugin'
+                    plugin 'org.apache.maven.plugins:maven-gpg-plugin'
                 }
             }
         }
@@ -231,18 +247,7 @@ project {
             id 'coverage'
             build {
                 plugins {
-                    plugin ('org.jacoco:jacoco-maven-plugin') {
-                        executions {
-                            execution {
-                                id 'pre-tests'
-                                goals 'prepare-agent'
-                            }
-                            execution {
-                                id 'post-tests'
-                                goals 'report'
-                            }
-                        }
-                    }
+                    plugin 'org.jacoco:jacoco-maven-plugin'
                 }
             }
         }
