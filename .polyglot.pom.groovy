@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.tautua</groupId>
   <artifactId>tautua</artifactId>
-  <version>3-SNAPSHOT</version>
+  <version>2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Tautua POM</name>
   <description>Tautua Corporate POM</description>
@@ -35,7 +36,6 @@
     <connection>scm:git:git@github.com:lruiz/TautuaPOM.git</connection>
     <developerConnection>scm:git:git@github.com:lruiz/TautuaPOM.git</developerConnection>
     <url>https://github.com/lruiz/TautuaPOM</url>
-    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <repository>
