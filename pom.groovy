@@ -228,12 +228,15 @@ project {
                     plugin 'org.apache.maven.plugins:maven-enforcer-plugin'
                     plugin 'org.apache.maven.plugins:maven-failsafe-plugin'
                     plugin 'org.apache.maven.plugins:maven-surefire-plugin'
+                    plugin 'org.apache.maven.plugins:maven-source-plugin'
+                    plugin 'org.apache.maven.plugins:maven-javadoc-plugin'
+                    plugin 'org.apache.maven.plugins:maven-gpg-plugin'
                 }
             }
         }
 
         profile {
-            id 'live'
+            id 'snapshot'
             build {
                 plugins {
                     plugin 'org.apache.maven.plugins:maven-source-plugin'
