@@ -18,7 +18,7 @@ project {
     modelVersion '4.0.0'
     groupId 'org.tautua'
     artifactId 'tautua'
-    version '3-SNAPSHOT'
+    version '3'
     packaging 'pom'
 
     name 'Tautua POM'
@@ -46,7 +46,7 @@ project {
             email 'lruiz@tautua.org'
             roles {
                 role 'Architect'
-                role 'Lead Developer'
+                role 'Developer'
             }
         }
     }
