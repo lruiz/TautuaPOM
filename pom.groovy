@@ -78,13 +78,14 @@ project {
         'java.version' '11'
         'maven.compiler.source' '${java.version}'
         'maven.compiler.target' '${java.version}'
+        'doclint.checks' 'none'
     }
 
     build {
         pluginManagement {
             plugins {
                 plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.6.0'
-                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.2.0'
+                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.3.1'
                 plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.11.0'
                 plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.6.0'
                 plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.1.1'
@@ -111,7 +112,7 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.1.0'
+                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.1.2'
 
                 plugin ('org.apache.maven.plugins:maven-gpg-plugin:3.1.0') {
                     executions {
@@ -133,11 +134,14 @@ project {
                             goals 'jar'
                         }
                     }
+                    configuration {
+                        doclint '${doclint.checks}'
+                    }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.4.4'
+                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.4.5'
 
-                plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.0') {
+                plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.1') {
                     configuration {
                         tagNameFormat 'v@{project.version}'
                         autoVersionSubmodules 'true'
