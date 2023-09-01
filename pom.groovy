@@ -18,7 +18,7 @@ project {
     modelVersion '4.0.0'
     groupId 'org.tautua'
     artifactId 'tautua'
-    version '4-SNAPSHOT'
+    version '4'
     packaging 'pom'
 
     name 'Tautua POM'
