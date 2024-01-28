@@ -18,7 +18,7 @@ project {
     modelVersion '4.0.0'
     groupId 'org.tautua'
     artifactId 'tautua'
-    version '4'
+    version '5'
     packaging 'pom'
 
     name 'Tautua POM'
@@ -85,12 +85,12 @@ project {
         pluginManagement {
             plugins {
                 plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.6.0'
-                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.3.1'
-                plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.11.0'
-                plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.6.0'
+                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.3.2'
+                plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.12.1'
+                plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.6.1'
                 plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.1.1'
 
-                plugin ('org.apache.maven.plugins:maven-enforcer-plugin:3.3.0') {
+                plugin ('org.apache.maven.plugins:maven-enforcer-plugin:3.4.1') {
                     executions {
                         execution {
                             id 'enforce-rules'
@@ -112,7 +112,7 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.1.2'
+                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.2.5'
 
                 plugin ('org.apache.maven.plugins:maven-gpg-plugin:3.1.0') {
                     executions {
@@ -127,7 +127,7 @@ project {
                 plugin 'org.apache.maven.plugins:maven-install-plugin:3.1.1'
                 plugin 'org.apache.maven.plugins:maven-jar-plugin:3.3.0'
 
-                plugin ('org.apache.maven.plugins:maven-javadoc-plugin:3.5.0') {
+                plugin ('org.apache.maven.plugins:maven-javadoc-plugin:3.6.3') {
                     executions {
                         execution {
                             id 'attach-javadocs'
@@ -139,7 +139,7 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.4.5'
+                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.5.0'
 
                 plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.1') {
                     configuration {
@@ -169,11 +169,11 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.1.0'
-                plugin 'org.codehaus.mojo:license-maven-plugin:2.0.1'
+                plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.2.5'
+                plugin 'org.codehaus.mojo:license-maven-plugin:2.4.0'
                 plugin 'org.codehaus.mojo:versions-maven-plugin:2.15.0'
 
-                plugin ('org.jacoco:jacoco-maven-plugin:0.8.10') {
+                plugin ('org.jacoco:jacoco-maven-plugin:0.8.11') {
                     executions {
                         execution {
                             id 'pre-tests'
@@ -240,12 +240,10 @@ project {
         }
 
         profile {
-            id 'snapshot'
+            id 'source'
             build {
                 plugins {
                     plugin 'org.apache.maven.plugins:maven-source-plugin'
-                    plugin 'org.apache.maven.plugins:maven-javadoc-plugin'
-                    plugin 'org.apache.maven.plugins:maven-gpg-plugin'
                 }
             }
         }
