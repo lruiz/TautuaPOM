@@ -71,14 +71,12 @@ project {
     }
 
     properties {
-        encoding 'UTF-8'
+        'encoding' 'UTF-8'
+        'java.version' '17'
+        'maven.version' '3.9.11'
         'project.build.sourceEncoding' '${encoding}'
         'project.reporting.outputEncoding' '${encoding}'
-        'maven.version' '3.9.11'
-        'java.version' '17'
         'maven.compiler.release' '${java.version}'
-        'maven.compiler.source' '${java.version}'
-        'maven.compiler.target' '${java.version}'
         'maven.compiler.debug' 'true'
         'maven.compiler.parameters' 'true'
         'doclint.checks' 'none'
