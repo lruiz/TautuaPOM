@@ -18,7 +18,7 @@ project {
     modelVersion '4.0.0'
     groupId 'org.tautua'
     artifactId 'tautua'
-    version '5'
+    version '6-SNAPSHOT'
     packaging 'pom'
 
     name 'Tautua POM'
@@ -74,23 +74,26 @@ project {
         encoding 'UTF-8'
         'project.build.sourceEncoding' '${encoding}'
         'project.reporting.outputEncoding' '${encoding}'
-        'maven.version' '3.8.2'
+        'maven.version' '3.9.9'
         'java.version' '11'
+        'maven.compiler.release' '${java.version}'
         'maven.compiler.source' '${java.version}'
         'maven.compiler.target' '${java.version}'
+        'maven.compiler.debug' 'true'
+        'maven.compiler.parameters' 'true'
         'doclint.checks' 'none'
     }
 
     build {
         pluginManagement {
             plugins {
-                plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.6.0'
-                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.3.2'
-                plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.12.1'
-                plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.6.1'
-                plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.1.1'
+                plugin 'org.apache.maven.plugins:maven-assembly-plugin:3.7.1'
+                plugin 'org.apache.maven.plugins:maven-clean-plugin:3.5.0'
+                plugin 'org.apache.maven.plugins:maven-compiler-plugin:3.14.0'
+                plugin 'org.apache.maven.plugins:maven-dependency-plugin:3.8.1'
+                plugin 'org.apache.maven.plugins:maven-deploy-plugin:3.1.4'
 
-                plugin ('org.apache.maven.plugins:maven-enforcer-plugin:3.4.1') {
+                plugin ('org.apache.maven.plugins:maven-enforcer-plugin:3.6.1') {
                     executions {
                         execution {
                             id 'enforce-rules'
@@ -108,13 +111,13 @@ project {
                         }
                     }
                     dependencies {
-                        dependency 'org.codehaus.mojo:extra-enforcer-rules:1.7.0'
+                        dependency 'org.codehaus.mojo:extra-enforcer-rules:1.10.0'
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.2.5'
+                plugin 'org.apache.maven.plugins:maven-failsafe-plugin:3.5.4'
 
-                plugin ('org.apache.maven.plugins:maven-gpg-plugin:3.1.0') {
+                plugin ('org.apache.maven.plugins:maven-gpg-plugin:3.2.8') {
                     executions {
                         execution {
                             id 'sign-artifacts'
@@ -124,10 +127,10 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-install-plugin:3.1.1'
-                plugin 'org.apache.maven.plugins:maven-jar-plugin:3.3.0'
+                plugin 'org.apache.maven.plugins:maven-install-plugin:3.1.4'
+                plugin 'org.apache.maven.plugins:maven-jar-plugin:3.4.2'
 
-                plugin ('org.apache.maven.plugins:maven-javadoc-plugin:3.6.3') {
+                plugin ('org.apache.maven.plugins:maven-javadoc-plugin:3.12.0') {
                     executions {
                         execution {
                             id 'attach-javadocs'
@@ -139,9 +142,9 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.5.0'
+                plugin 'org.apache.maven.plugins:maven-project-info-reports-plugin:3.9.0'
 
-                plugin ('org.apache.maven.plugins:maven-release-plugin:3.0.1') {
+                plugin ('org.apache.maven.plugins:maven-release-plugin:3.1.1') {
                     configuration {
                         tagNameFormat 'v@{project.version}'
                         autoVersionSubmodules 'true'
@@ -150,17 +153,18 @@ project {
                 }
 
                 plugin 'org.apache.maven.plugins:maven-resources-plugin:3.3.1'
+                plugin 'org.apache.maven.plugins:maven-shade-plugin:3.6.1'
 
-                plugin ('org.apache.maven.plugins:maven-site-plugin:3.12.1') {
+                plugin ('org.apache.maven.plugins:maven-site-plugin:3.21.0') {
                     dependencies {
                         dependency 'org.apache.maven.wagon:wagon-scm:3.5.3'
-                        dependency 'org.apache.maven.scm:maven-scm-api:2.0.1'
-                        dependency 'org.apache.maven.scm:maven-scm-provider-gitexe:2.0.1'
-                        dependency 'org.apache.maven.scm:maven-scm-manager-plexus:2.0.1'
+                        dependency 'org.apache.maven.scm:maven-scm-api:2.1.0'
+                        dependency 'org.apache.maven.scm:maven-scm-provider-gitexe:2.1.0'
+                        dependency 'org.apache.maven.scm:maven-scm-manager-plexus:2.1.0'
                     }
                 }
 
-                plugin ('org.apache.maven.plugins:maven-source-plugin:3.3.0') {
+                plugin ('org.apache.maven.plugins:maven-source-plugin:3.3.1') {
                     executions {
                         execution {
                             id 'attach-sources'
@@ -169,11 +173,11 @@ project {
                     }
                 }
 
-                plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.2.5'
-                plugin 'org.codehaus.mojo:license-maven-plugin:2.4.0'
-                plugin 'org.codehaus.mojo:versions-maven-plugin:2.15.0'
+                plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.5.4'
+                plugin 'org.codehaus.mojo:license-maven-plugin:2.7.0'
+                plugin 'org.codehaus.mojo:versions-maven-plugin:2.19.1'
 
-                plugin ('org.jacoco:jacoco-maven-plugin:0.8.11') {
+                plugin ('org.jacoco:jacoco-maven-plugin:0.8.13') {
                     executions {
                         execution {
                             id 'pre-tests'
