@@ -59,14 +59,14 @@ project {
 
     distributionManagement {
         repository {
-            id 'sonatype.ossrh'
-            name 'Sonatype OSSRH'
-            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            id 'sonatype.central'
+            name 'Sonatype Central'
+            url 'https://central.sonatype.com'
         }
         snapshotRepository {
-            id 'sonatype.ossrh'
-            name 'Sonatype OSSRH'
-            url 'https://oss.sonatype.org/content/repositories/snapshots'
+            id 'sonatype.central'
+            name 'Sonatype Central'
+            url 'https://central.sonatype.com/repository/maven-snapshots/'
         }
     }
 
@@ -172,6 +172,7 @@ project {
                 }
 
                 plugin 'org.apache.maven.plugins:maven-surefire-plugin:3.5.4'
+
                 plugin 'org.codehaus.mojo:license-maven-plugin:2.7.0'
                 plugin 'org.codehaus.mojo:versions-maven-plugin:2.19.1'
 
@@ -185,6 +186,14 @@ project {
                             id 'post-tests'
                             goals 'report'
                         }
+                    }
+                }
+
+                plugin ('org.sonatype.central:central-publishing-maven-plugin:0.9.0') {
+                    extensions 'true'
+                    configuration {
+                        publishingServerId 'sonatype.central'
+                        autoPublish 'false'
                     }
                 }
             }
@@ -237,6 +246,7 @@ project {
                     plugin 'org.apache.maven.plugins:maven-source-plugin'
                     plugin 'org.apache.maven.plugins:maven-javadoc-plugin'
                     plugin 'org.apache.maven.plugins:maven-gpg-plugin'
+                    plugin 'org.sonatype.central:central-publishing-maven-plugin'
                 }
             }
         }
